@@ -12,12 +12,24 @@ import os, time
 class Car(object):
     def __init__(self, cartank=0, fulltank=0):
         print("This car class is now built")
+        # I would not reference "Car" object here, I think your objective is to init
+        # a new car with a new tank/fulltank values, so you should be using "self"
+        
+        # your original code:
         Car.cartank = cartank
         Car.fulltank = fulltank
+        
+        # proposed code:
+        self.cartank = cartank
+        self.fulltank = fulltank
+        
         print("This tank has", self.cartank, "gallons of fuel")
         print("This tanks max is", self.fulltank, "gallons of fuel")
 
     def update_tank(self):
+        # don't reference "Person" here, that's a different object, 
+        # just add "selection" as parameter to the update_tank function, 
+        # the class should be self contained, not referencing other classes..
         if Person.selection > 3:
             print("Your car tank is still the same.")
         elif Person.selection == 0:
@@ -121,7 +133,7 @@ class Person(object):
             print("Sorry, please try again")
 
 #main code
-
+# add more comments here to explain what's going on 
 Person = Person(100)
 Car = Car(10, 40)
 Gasstation = GasStation(5000, 3.87, 4.87, 5.87)
